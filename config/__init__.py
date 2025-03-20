@@ -10,5 +10,5 @@ class Config(BaseSettings):
     BATCH_SIZE: int = 64
     VOCAB_SIZE: int = 1000
     OUTPUT_SEQUENCE_LENGTH: Optional[int] = None
-    TRAINING_LEARNING_RATE: float = 1e-3
+    TRAINING_LEARNING_RATE: float = 1e-4
     EPOCHS: int = 10

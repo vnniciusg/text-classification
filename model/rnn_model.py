@@ -18,14 +18,17 @@ class RNNSentimentAnalyzerModel(Model):
             self.encoder.adapt(train_dataset.map(lambda text, label: text))
 
         self.embedding = Embedding(input_dim=len(self.encoder.get_vocabulary()), output_dim=64, mask_zero=True)
-        self.bidirectional = Bidirectional(LSTM(64))
+
+        self.bidirectional_1 = Bidirectional(LSTM(64, return_sequences=True))
+        self.bidirectional_2 = Bidirectional(LSTM(32))
         self.dense = Dense(64, activation="relu")
         self.dense_output = Dense(1)
 
     def __call__(self, inputs):
         x = self.encoder(inputs)
         x = self.embedding(x)
-        x = self.bidirectional(x)
+        x = self.bidirectional_1(x)
+        x = self.bidirectional_2(x)
         x = self.dense(x)
         return self.dense_output(x)
 
