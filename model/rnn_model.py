@@ -7,7 +7,7 @@ from config import Config
 from utils import timeit
 
 
-class RNNSentimentAnalyzerModel(Model):
+class RNNTextClassifierModel(Model):
 
     def __init__(self, config: Config, train_dataset=None) -> None:
         super().__init__()
@@ -33,9 +33,9 @@ class RNNSentimentAnalyzerModel(Model):
         return self.dense_output(x)
 
 
-class RNNSentimentAnalyzerModelTrainer:
+class RNNTextClassifierModelTrainer:
 
-    def __init__(self, model: RNNSentimentAnalyzerModel, train_dataset, val_dataset, config: Config):
+    def __init__(self, model: RNNTextClassifierModel, train_dataset, val_dataset, config: Config):
         self.model = model
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
